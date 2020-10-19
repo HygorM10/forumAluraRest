@@ -1,6 +1,6 @@
 package br.com.alura.forum.controller;
 
-import static org.springframework.data.domain.Sort.Direction.DESC;
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 import java.net.URI;
 import java.util.Optional;
@@ -46,7 +46,7 @@ public class TopicosController {
 	
 	@GetMapping
 	@Cacheable(value = "listaDeTopicos")
-	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @PageableDefault(sort = "id", direction = DESC) Pageable paginacao) {
+	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @PageableDefault(sort = "id", direction = ASC) Pageable paginacao) {
 		
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
